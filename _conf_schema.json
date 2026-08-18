@@ -1,0 +1,90 @@
+{
+  "cookie_header": {
+    "description": "浏览器导出的 X Cookie",
+    "type": "text",
+    "default": "",
+    "hint": "可粘贴 X 请求中的 Cookie Header，也支持带 domain 的浏览器 JSON 列表导出。插件只保留 auth_token 和 ct0；列表条目必须精确属于 x.com 或 twitter.com。请尽可能使用小号。",
+    "obvious_hint": true
+  },
+  "auth_token": {
+    "description": "X auth_token（可选）",
+    "type": "string",
+    "default": "",
+    "hint": "如果不想粘贴整段 Cookie，可单独填写 auth_token；建议同时填写 ct0。不要将此值发送给任何人。",
+    "obvious_hint": true
+  },
+  "ct0": {
+    "description": "X ct0 CSRF Cookie（可选）",
+    "type": "string",
+    "default": "",
+    "hint": "Cookie 模式建议填写 ct0；它会作为 x-csrf-token 请求头发送。",
+    "obvious_hint": true
+  },
+  "graphql_query_id": {
+    "description": "UserTweets GraphQL 操作 ID",
+    "type": "string",
+    "default": "eoJ5zbv51Z_KVl81v9PmLQ/UserTweets",
+    "hint": "X 内部接口可能更新 queryId；格式为 queryId/UserTweets，失效时可按浏览器请求更新。"
+  },
+  "graphql_user_query_id": {
+    "description": "UserByScreenName GraphQL 操作 ID",
+    "type": "string",
+    "default": "Gb-d6r0vxPOADdG62OEBpQ/UserByScreenName",
+    "hint": "用于将用户名解析为用户 ID；X 内部接口更新时可按浏览器请求更新。"
+  },
+  "push_enabled": {
+    "description": "启用新推文自动推送",
+    "type": "bool",
+    "default": true,
+    "hint": "aiocqhttp 私聊用户可订阅自己的会话；群聊仅 AstrBot 管理员可以通过 /tibo 建立订阅。"
+  },
+  "poll_interval_seconds": {
+    "description": "新推文检查间隔（秒）",
+    "type": "int",
+    "default": 60,
+    "hint": "允许范围为 15-3600 秒。间隔越短，X 接口请求次数越多，也越容易触发频率限制或 Cookie 账号风控。"
+  },
+  "max_push_per_poll": {
+    "description": "单次最多推送的新推文数",
+    "type": "int",
+    "default": 5,
+    "hint": "允许范围为 1-20，避免停机较久后一次发送过多消息。"
+  },
+  "max_pages": {
+    "description": "单次查询最多读取的历史分页数",
+    "type": "int",
+    "default": 32,
+    "hint": "最大 32 页；GraphQL 通常每页约 40 条，实际历史深度由 X 决定。"
+  },
+  "reset_analysis_tweet_count": {
+    "description": "/newreset 分析的推文数量",
+    "type": "int",
+    "default": 20,
+    "hint": "允许范围为 1-50。命令会按时间从新到旧抓取该数量的 @thsottiaux 原推文进行分析。"
+  },
+  "tibo_cooldown_seconds": {
+    "description": "/tibo 同用户同会话冷却时间（秒）",
+    "type": "int",
+    "default": 15,
+    "hint": "允许范围为 5-600 秒；插件同时只执行一个 /tibo 请求。"
+  },
+  "newreset_cooldown_seconds": {
+    "description": "/newreset 同用户同会话冷却时间（秒）",
+    "type": "int",
+    "default": 120,
+    "hint": "允许范围为 30-3600 秒；插件同时只执行一个额度分析请求。"
+  },
+  "translation_enabled": {
+    "description": "启用外语翻译",
+    "type": "bool",
+    "default": true,
+    "hint": "英文、法文等外语内容会翻译成简体中文，并始终保留原文。翻译使用当前会话的 AstrBot 聊天模型。"
+  },
+  "translation_provider_id": {
+    "description": "翻译和额度分析使用的模型 ID（可选）",
+    "type": "string",
+    "default": "",
+    "_special": "select_provider",
+    "hint": "留空时，推文翻译和 /newreset 分析均使用当前会话的聊天模型。"
+  }
+}

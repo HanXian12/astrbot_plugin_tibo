@@ -1,0 +1,17 @@
+name: astrbot_plugin_tibo
+display_name: "tibo雷达"
+short_desc: 获取、翻译并监控 @thsottiaux 原推文，分析 Codex 额度重置信息。
+desc: |
+  通过浏览器 Cookie 调用 X 内部 GraphQL，获取固定账号 @thsottiaux 本人发布的原推文，支持按序号查看历史、自动推送新推文，并通过 /newreset 分析 Codex 额度是否重置及证据时间。Cookie 存在账号风控和封禁风险，建议尽可能使用小号。
+version: 1.0.0
+author: HanXian12
+repo: https://github.com/HanXian12/astrbot_plugin_tibo
+social_link: https://github.com/HanXian12
+astrbot_version: ">=4.27,<5"
+support_platforms:
+  - aiocqhttp
+  - webchat
+tags:
+  - X
+  - 推文
+  - Codex
